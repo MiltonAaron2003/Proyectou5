@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuario = $_POST["usuario"];
     $contrasena = $_POST["contrasena"];
 
-    // Preparamos la consulta con los nombres correctos de las columnas
     $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
     $stmt->bind_param("s", $usuario);
     $stmt->execute();
@@ -22,10 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($resultado->num_rows === 1) {
         $usuario_db = $resultado->fetch_assoc();
-        // Verificamos la contraseña utilizando password_verify
         if (password_verify($contrasena, $usuario_db["contrasena"])) {
             $_SESSION["usuario"] = $usuario_db["usuario"];
-            header("Location: index.php"); // Redirigimos a la página de inicio
+            header("Location: index.php");
             exit();
         } else {
             $error = "Contraseña incorrecta.";
@@ -77,7 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #fff;
         }
 
-        input[type="submit"] {
+        input[type="submit"],
+        .boton-registro {
             background-color: #4dbf00;
             color: white;
             border: none;
@@ -86,9 +85,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s;
+            margin-top: 10px;
+            display: inline-block;
+            text-decoration: none;
         }
 
-        input[type="submit"]:hover {
+        input[type="submit"]:hover,
+        .boton-registro:hover {
             background-color: #3aa000;
         }
 
@@ -109,6 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="contrasena" placeholder="Contraseña" required><br>
             <input type="submit" value="Entrar">
         </form>
+        <a href="register.php" class="boton-registro">Regresar al registro</a>
     </div>
 </body>
 </html>

@@ -65,7 +65,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #fff;
         }
 
-        input[type="submit"] {
+        input[type="submit"],
+        .boton-login {
             background-color: #4dbf00;
             color: white;
             border: none;
@@ -74,9 +75,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             cursor: pointer;
             font-weight: bold;
             transition: background 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            margin-top: 10px;
         }
 
-        input[type="submit"]:hover {
+        input[type="submit"]:hover,
+        .boton-login:hover {
             background-color: #3aa000;
         }
 
@@ -92,17 +97,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         .mensaje.error {
             color: #f44336;
-        }
-
-        .link-login {
-            margin-top: 20px;
-            font-size: 1em;
-            color: #4dbf00;
-            text-decoration: none;
-        }
-
-        .link-login:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
@@ -122,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
 
         <?php if ($mensaje && strpos($mensaje, '✅') !== false): ?>
-            <a href="login.php" class="link-login">Ir al login</a>
+            <a href="login.php" class="boton-login">Iniciar sesión</a>
         <?php endif; ?>
     </div>
 </body>

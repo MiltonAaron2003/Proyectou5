@@ -1,8 +1,4 @@
 <?php
-// Aquí puedes incluir cualquier lógica PHP si es necesario
-// Ejemplo: iniciar una sesión si es necesario para manejar usuarios
-// session_start();
-// $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <title>Movie Design</title>
+    <title>TECFLIX</title>
 </head>
 
 <body>
