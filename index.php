@@ -79,6 +79,14 @@
 
                         </div>
                         <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="img/chucky2.jpeg" alt="">
+                            <span class="movie-list-item-title">Chucky 2</span>
+                            <p class="movie-list-item-desc">el muñeco diabolico regresa.</p>
+                            <button class="movie-list-item-button" onclick="location.href='ver.php?video=CHUCKY2.mp4'">MIRAR</button>
+
+                        </div>
+
+                        <div class="movie-list-item">
                             <img class="movie-list-item-img" src="img/boyka.jpeg" alt="">
                             <span class="movie-list-item-title">Boyka</span>
                             <p class="movie-list-item-desc">la violencia nunca fue opcion.</p>
