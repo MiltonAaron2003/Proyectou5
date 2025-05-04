@@ -38,6 +38,20 @@ ball.addEventListener("click", () => {
 });
 
 // Mostrar el video al hacer clic en el botón
+function mostrarVideo() {
+    const videoContainer = document.getElementById('video-container');
+    if (videoContainer) {
+        videoContainer.style.display = 'block'; // Muestra el contenedor del video
+    } else {
+        console.error('No se encontró el contenedor del video.');
+    }
+}
+
+function abrirVideo() {
+    const videoUrl = 'videos/MONSTERINC.mp4'; // Ruta del video
+    window.open(videoUrl, '_blank'); // Abre el video en una nueva pestaña o ventana
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const btnMirar = document.getElementById("btn-mirar");
   const videoContainer = document.getElementById("video-container");
@@ -45,9 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnMirar) {
     btnMirar.addEventListener("click", () => {
       // Mostrar el contenedor de video
-      videoContainer.style.display = "block"; // Establece display a block
+      mostrarVideo(); // Llama a la función mostrarVideo
       videoContainer.scrollIntoView({ behavior: "smooth" }); // Desplaza suavemente hacia el video
     });
   }
+
+  // Selecciona todos los botones con la clase "movie-list-item-button"
+  const buttons = document.querySelectorAll(".movie-list-item-button");
+
+  // Agrega un evento click a cada botón
+  buttons.forEach(button => {
+      button.addEventListener("click", () => {
+          const videoUrl = button.getAttribute("data-video"); // Obtiene la ruta del video desde el atributo data-video
+          if (videoUrl) {
+              window.open(videoUrl, "_blank"); // Abre el video en una nueva pestaña
+          } else {
+              console.error("No se encontró la ruta del video.");
+          }
+      });
+  });
 });
 
