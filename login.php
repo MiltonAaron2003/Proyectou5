@@ -3,7 +3,7 @@ session_start();
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "tecflix"; 
+$db = "tecflix";
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
@@ -11,25 +11,30 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST["usuario"];
-    $contrasena = $_POST["contrasena"];
+    if (isset($_POST["usuario"]) && isset($_POST["contrasena"])) {
+        $usuario = $_POST["usuario"];
+        $contrasena = $_POST["contrasena"];
 
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
-    $stmt->bind_param("s", $usuario);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
+        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE usuario = ?");
+        $stmt->bind_param("s", $usuario);
+        $stmt->execute();
+        $resultado = $stmt->get_result();
 
-    if ($resultado->num_rows === 1) {
-        $usuario_db = $resultado->fetch_assoc();
-        if (password_verify($contrasena, $usuario_db["contrasena"])) {
-            $_SESSION["usuario"] = $usuario_db["usuario"];
-            header("Location: index.php");
-            exit();
+        if ($resultado->num_rows === 1) {
+            $usuario_db = $resultado->fetch_assoc();
+            if (password_verify($contrasena, $usuario_db["contrasena"])) {
+                $_SESSION["usuario"] = $usuario_db["usuario"];
+                $_SESSION["id_usuario"] = $usuario_db["id"];
+                header("Location: perfiles.php");
+                exit();
+            } else {
+                $error = "Contraseña incorrecta.";
+            }
         } else {
-            $error = "Contraseña incorrecta.";
+            $error = "Usuario no encontrado.";
         }
     } else {
-        $error = "Usuario no encontrado.";
+        $error = "Por favor, completa todos los campos.";
     }
 }
 ?>

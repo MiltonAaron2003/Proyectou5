@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
-$user = "root"; 
-$pass = "";     
+$user = "root"; // cambia si usas otro usuario
+$pass = "";     // cambia si tu MySQL tiene contraseña
 $db = "tecflix";
 
 $conn = new mysqli($host, $user, $pass, $db);

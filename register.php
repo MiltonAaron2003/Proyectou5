@@ -14,6 +14,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO usuarios (usuario, contrasena) VALUES ('$usuario', '$contrasena')";
 
     if ($conexion->query($sql) === TRUE) {
+        $id_usuario = $conexion->insert_id;
+
+        // Insertar tres perfiles predeterminados
+        $perfiles = ['Usuario 1', 'Usuario 2', 'Usuario 3'];
+        foreach ($perfiles as $nombre) {
+            $conexion->query("INSERT INTO perfiles (nombre, id_usuario) VALUES ('$nombre', $id_usuario)");
+        }
+
         $mensaje = "✅ Usuario registrado correctamente.";
     } else {
         $mensaje = "❌ Error: " . $conexion->error;

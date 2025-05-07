@@ -1,8 +1,7 @@
-// Selección de flechas y listas de películas
+
 const arrows = document.querySelectorAll(".arrow");
 const movieLists = document.querySelectorAll(".movie-list");
 
-// Control de desplazamiento horizontal para las listas de películas
 arrows.forEach((arrow, i) => {
   const itemNumber = movieLists[i].querySelectorAll("img").length;
   let clickCounter = 0;
